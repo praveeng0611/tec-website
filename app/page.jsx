@@ -98,10 +98,23 @@ function useCounter(target, duration = 1800) {
 }
 
 /* ─── HERO SLIDER ─── */
+// Unsplash images — free to use under Unsplash License (no attribution required)
 const heroSlides = [
-  { bg: 'bg-blue-900', label: 'Manufacturing Solutions' },
-  { bg: 'bg-slate-800', label: 'Hot Stamping Technology' },
-  { bg: 'bg-tec-blue', label: 'Automotive Components' },
+  {
+    img: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=900&q=80&fit=crop&auto=format',
+    label: 'Sheet Metal Stamping',
+    sub: 'Precision forming from 270 MPa to 1200 MPa tensile steel',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80&fit=crop&auto=format',
+    label: 'Advanced Manufacturing',
+    sub: 'Ultra-high-strength automotive body panels',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80&fit=crop&auto=format',
+    label: 'Precision Welding & Assembly',
+    sub: 'Robotic MIG, Arc and resistance welding at scale',
+  },
 ];
 
 export default function HomePage() {
@@ -156,16 +169,18 @@ export default function HomePage() {
                   key={i}
                   className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}
                 >
-                  {/* Placeholder factory imagery */}
-                  <div className={`w-full h-full ${s.bg} flex items-center justify-center`}>
-                    <div className="text-white/20 text-center">
-                      <svg className="w-24 h-24 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                      </svg>
-                      <p className="text-sm opacity-50">{s.label}</p>
-                    </div>
+                  {/* Real Unsplash manufacturing photo */}
+                  <img
+                    src={s.img}
+                    alt={s.label}
+                    className="w-full h-full object-cover"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <div className="absolute bottom-6 left-6">
+                    <div className="text-white font-bold text-base leading-snug">{s.label}</div>
+                    <div className="text-white/70 text-xs mt-1">{s.sub}</div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
               ))}
 
@@ -261,14 +276,26 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 gap-3">
             {[
-              'bg-slate-700',
-              'bg-slate-600',
-              'bg-slate-800',
-            ].map((bg, i) => (
-              <div key={i} className={`${bg} rounded-xl h-52 lg:h-72 flex items-center justify-center overflow-hidden`}>
-                <svg className="w-12 h-12 text-white/20" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
+              {
+                src: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&q=80&fit=crop&auto=format',
+                alt: 'Industrial stamping press',
+              },
+              {
+                src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80&fit=crop&auto=format',
+                alt: 'Precision manufacturing',
+              },
+              {
+                src: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80&fit=crop&auto=format',
+                alt: 'Welding and fabrication',
+              },
+            ].map((img, i) => (
+              <div key={i} className="rounded-xl h-52 lg:h-72 overflow-hidden">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>

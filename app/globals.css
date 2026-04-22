@@ -4,39 +4,88 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════
+   BLUE THEME (default) — RGB triplets for alpha-value support
+   ═══════════════════════════════════════════════════════ */
 :root {
-  --tec-navy:    #0D1B2E;
-  --tec-blue:    #1B4080;
-  --tec-cyan:    #29ABE2;
-  --tec-light:   #EEF4FB;
+  --tec-navy:      13 27 46;      /* #0D1B2E */
+  --tec-blue:      27 64 128;     /* #1B4080 */
+  --tec-blue-mid:  30 91 168;     /* #1E5BA8 */
+  --tec-cyan:      41 171 226;    /* #29ABE2 */
+  --tec-light:     238 244 251;   /* #EEF4FB */
+  --tec-card:      26 63 114;     /* #1A3F72 */
+  --tec-dark-bg:   10 21 37;      /* #0A1525 */
+  --tec-dark-card: 22 40 68;      /* #162844 */
+
+  /* Semantic tokens used in CSS utilities below */
+  --accent:        41 171 226;
+  --btn-bg:        27 64 128;
+  --btn-hover:     30 91 168;
+  --btn-shadow:    rgba(27, 64, 128, 0.35);
+  --scrollbar-bg:  238 244 251;
 }
 
-* { box-sizing: border-box; padding: 0; margin: 0; }
+/* ═══════════════════════════════════════════════════════
+   FIRE THEME — applied via html.fire class
+   ═══════════════════════════════════════════════════════ */
+html.fire {
+  --tec-navy:      26 8 0;        /* #1A0800 */
+  --tec-blue:      124 26 9;      /* #7C1A09 */
+  --tec-blue-mid:  176 48 16;     /* #B03010 */
+  --tec-cyan:      249 115 22;    /* #F97316  orange-500 */
+  --tec-light:     255 247 237;   /* #FFF7ED  orange-50 */
+  --tec-card:      146 36 12;     /* #92240C */
+  --tec-dark-bg:   15 4 0;        /* #0F0400 */
+  --tec-dark-card: 36 10 0;       /* #240A00 */
 
+  --accent:        249 115 22;
+  --btn-bg:        176 48 16;
+  --btn-hover:     220 68 24;
+  --btn-shadow:    rgba(249, 115, 22, 0.35);
+  --scrollbar-bg:  255 247 237;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE RESET
+   ═══════════════════════════════════════════════════════ */
+* { box-sizing: border-box; padding: 0; margin: 0; }
 html { scroll-behavior: smooth; }
 
 body {
   background-color: #ffffff;
-  color: #0D1B2E;
+  color: rgb(var(--tec-navy));
   font-family: 'Inter', sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-/* Dark mode body */
 html.dark body {
-  background-color: #0A1525;
+  background-color: rgb(var(--tec-dark-bg));
   color: #e2e8f0;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #EEF4FB; }
-::-webkit-scrollbar-thumb { background: #29ABE2; border-radius: 3px; }
-html.dark ::-webkit-scrollbar-track { background: #0A1525; }
+/* fire light mode body */
+html.fire body {
+  background-color: #ffffff;
+  color: rgb(var(--tec-navy));
+}
+html.fire.dark body {
+  background-color: rgb(var(--tec-dark-bg));
+  color: #f5ddd0;
+}
 
-/* Utility classes */
+/* ═══════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgb(var(--scrollbar-bg)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--accent)); border-radius: 3px; }
+html.dark ::-webkit-scrollbar-track { background: rgb(var(--tec-dark-bg)); }
+
+/* ═══════════════════════════════════════════════════════
+   BUTTON — tec-btn-primary
+   ═══════════════════════════════════════════════════════ */
 .tec-btn-primary {
-  background: #1B4080;
+  background: rgb(var(--btn-bg));
   color: white;
   padding: 12px 28px;
   border-radius: 50px;
@@ -52,14 +101,17 @@ html.dark ::-webkit-scrollbar-track { background: #0A1525; }
   border: none;
 }
 .tec-btn-primary:hover {
-  background: #1E5BA8;
+  background: rgb(var(--btn-hover));
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(27, 64, 128, 0.35);
+  box-shadow: 0 8px 24px var(--btn-shadow);
 }
 
+/* ═══════════════════════════════════════════════════════
+   BUTTON — tec-btn-outline
+   ═══════════════════════════════════════════════════════ */
 .tec-btn-outline {
   background: transparent;
-  color: #1B4080;
+  color: rgb(var(--btn-bg));
   padding: 11px 27px;
   border-radius: 50px;
   font-weight: 600;
@@ -71,56 +123,62 @@ html.dark ::-webkit-scrollbar-track { background: #0A1525; }
   gap: 8px;
   cursor: pointer;
   text-decoration: none;
-  border: 1.5px solid #1B4080;
+  border: 1.5px solid rgb(var(--btn-bg));
 }
 .tec-btn-outline:hover {
-  background: #1B4080;
+  background: rgb(var(--btn-bg));
   color: white;
 }
-
 html.dark .tec-btn-outline {
-  color: #29ABE2;
-  border-color: #29ABE2;
+  color: rgb(var(--accent));
+  border-color: rgb(var(--accent));
 }
 html.dark .tec-btn-outline:hover {
-  background: #29ABE2;
-  color: #0A1525;
+  background: rgb(var(--accent));
+  color: rgb(var(--tec-dark-bg));
 }
 
-/* Section tag */
+/* ═══════════════════════════════════════════════════════
+   SECTION TAG
+   ═══════════════════════════════════════════════════════ */
 .tec-tag {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #29ABE2;
+  color: rgb(var(--accent));
 }
 
-/* Stat number */
+/* ═══════════════════════════════════════════════════════
+   STAT NUMBER
+   ═══════════════════════════════════════════════════════ */
 .tec-stat-num {
   font-size: 2.25rem;
   font-weight: 800;
-  color: #29ABE2;
+  color: rgb(var(--accent));
   line-height: 1;
 }
 
-/* Card hover */
+/* ═══════════════════════════════════════════════════════
+   SERVICE CARD
+   ═══════════════════════════════════════════════════════ */
 .tec-service-card {
-  background: #1A3F72;
+  background: rgb(var(--tec-card));
   border-radius: 16px;
   padding: 28px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .tec-service-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(41, 171, 226, 0.2);
+  box-shadow: 0 16px 40px rgb(var(--accent) / 0.2);
 }
-
 html.dark .tec-service-card {
-  background: #162844;
+  background: rgb(var(--tec-dark-card));
 }
 
-/* Feature card */
+/* ═══════════════════════════════════════════════════════
+   FEATURE CARD (Why Choose Us section)
+   ═══════════════════════════════════════════════════════ */
 .tec-feature-card {
   background: rgba(255,255,255,0.08);
   border-radius: 12px;
@@ -134,10 +192,15 @@ html.dark .tec-service-card {
   background: rgba(255,255,255,0.14);
 }
 
-/* Globe decoration */
-.globe-wrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-bottom: -40px;
+/* ═══════════════════════════════════════════════════════
+   THEME TRANSITION — smooth color change on palette switch
+   ═══════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+/* Override for transforms so animations stay snappy */
+.tec-service-card, .tec-btn-primary, .tec-btn-outline {
+  transition: all 0.3s ease;
 }

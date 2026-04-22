@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, Mail, Sun, Moon, Menu, X } from 'lucide-react';
+import { Phone, Mail, Sun, Moon, Menu, X, Flame } from 'lucide-react';
+import Image from 'next/image';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -14,31 +15,51 @@ const navLinks = [
 
 export default function Navbar() {
   const [dark, setDark] = useState(false);
+  const [fire, setFire] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState('/');
 
+  /* ── Bootstrap saved preferences ── */
   useEffect(() => {
-    const saved = localStorage.getItem('tec-theme');
-    if (saved === 'dark') {
+    const savedTheme = localStorage.getItem('tec-theme');
+    const savedColor = localStorage.getItem('tec-color');
+
+    if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
       setDark(true);
+    }
+    if (savedColor === 'fire') {
+      document.documentElement.classList.add('fire');
+      setFire(true);
     }
     setActive(window.location.pathname);
   }, []);
 
+  /* ── Scroll shadow ── */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const toggleTheme = () => {
+  /* ── Dark / Light toggle ── */
+  const toggleDark = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle('dark', next);
     localStorage.setItem('tec-theme', next ? 'dark' : 'light');
   };
+
+  /* ── Blue / Fire palette toggle ── */
+  const toggleFire = () => {
+    const next = !fire;
+    setFire(next);
+    document.documentElement.classList.toggle('fire', next);
+    localStorage.setItem('tec-color', next ? 'fire' : 'blue');
+  };
+
+  const logoSrc = fire ? '/logo-fire.svg' : '/logo-blue.svg';
 
   return (
     <>
@@ -50,27 +71,31 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 4C18 4 8 8 6 18C4.5 25 9 30 15 31C21 32 27 28 28 22C29 16 25 11 20 11C16 11 13 14 14 17C15 20 18 20 19 18" stroke="#29ABE2" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-                <circle cx="19.5" cy="17.5" r="2" fill="#29ABE2"/>
-              </svg>
+            {/* ── Logo ── */}
+            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+              <Image
+                src={logoSrc}
+                alt="Tadpole Engineering"
+                width={38}
+                height={38}
+                className="object-contain"
+                priority
+              />
               <div className="leading-tight">
-                <div className="font-900 text-sm tracking-wider text-tec-navy dark:text-white font-black uppercase">TADPOLE</div>
-                <div className="font-400 text-[9px] tracking-[0.2em] text-tec-blue dark:text-tec-cyan uppercase">ENGINEERING</div>
+                <div className="font-black text-sm tracking-wider text-tec-navy dark:text-white uppercase">TADPOLE</div>
+                <div className="text-[9px] tracking-[0.2em] text-tec-blue dark:text-tec-cyan uppercase font-medium">ENGINEERING</div>
               </div>
             </Link>
 
-            {/* Desktop Nav */}
+            {/* ── Desktop Nav Links ── */}
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-500 rounded transition-colors duration-200 ${
+                  className={`px-4 py-2 text-sm font-medium rounded transition-colors duration-200 ${
                     active === link.href
-                      ? 'text-tec-cyan border-b-2 border-tec-cyan font-600'
+                      ? 'text-tec-cyan border-b-2 border-tec-cyan font-semibold'
                       : 'text-tec-navy dark:text-gray-300 hover:text-tec-cyan dark:hover:text-tec-cyan'
                   }`}
                   onClick={() => setActive(link.href)}
@@ -80,24 +105,43 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right CTAs */}
+            {/* ── Right CTAs ── */}
             <div className="hidden md:flex items-center gap-2">
-              <a href="tel:+919999999999" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan transition-all duration-200">
+              <a href="tel:+912012345678"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan transition-all">
                 <Phone className="w-3.5 h-3.5" /> Call
               </a>
-              <a href="mailto:info@tadpoleengineering.com" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan transition-all duration-200">
+              <a href="mailto:info@tadpoletec.com"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan transition-all">
                 <Mail className="w-3.5 h-3.5" /> Mail
               </a>
+
+              {/* Dark/Light toggle */}
               <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan transition-all duration-200"
-                aria-label="Toggle theme"
+                onClick={toggleDark}
+                className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan transition-all"
+                title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+                aria-label="Toggle dark mode"
               >
                 {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </button>
+
+              {/* Fire / Blue palette toggle */}
+              <button
+                onClick={toggleFire}
+                className={`p-2 rounded-lg border transition-all ${
+                  fire
+                    ? 'border-orange-400 text-orange-500 bg-orange-50 dark:bg-orange-950/30'
+                    : 'border-gray-200 dark:border-gray-700 text-tec-navy dark:text-gray-300 hover:border-tec-cyan hover:text-tec-cyan'
+                }`}
+                title={fire ? 'Switch to Blue theme' : 'Switch to Fire theme'}
+                aria-label="Toggle color theme"
+              >
+                <Flame className="w-4 h-4" />
+              </button>
             </div>
 
-            {/* Mobile hamburger */}
+            {/* ── Mobile hamburger ── */}
             <button
               className="md:hidden p-2 text-tec-navy dark:text-white"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -107,28 +151,34 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* ── Mobile menu ── */}
         {mobileOpen && (
           <div className="md:hidden bg-white dark:bg-tec-navy border-t border-gray-100 dark:border-gray-800 px-4 py-4 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2 text-sm font-500 text-tec-navy dark:text-gray-300 hover:text-tec-cyan rounded"
+                className="block px-3 py-2 text-sm font-medium text-tec-navy dark:text-gray-300 hover:text-tec-cyan rounded"
                 onClick={() => { setActive(link.href); setMobileOpen(false); }}
               >
                 {link.label}
               </Link>
             ))}
             <div className="flex items-center gap-2 pt-2 border-t border-gray-100 dark:border-gray-800 mt-2">
-              <a href="tel:+919999999999" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300">
+              <a href="tel:+912012345678" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300">
                 <Phone className="w-3.5 h-3.5" /> Call
               </a>
-              <a href="mailto:info@tadpoleengineering.com" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300">
+              <a href="mailto:info@tadpoletec.com" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-tec-navy dark:text-gray-300">
                 <Mail className="w-3.5 h-3.5" /> Mail
               </a>
-              <button onClick={toggleTheme} className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-tec-navy dark:text-gray-300">
+              <button onClick={toggleDark} className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-tec-navy dark:text-gray-300">
                 {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              <button
+                onClick={toggleFire}
+                className={`p-2 rounded-lg border ${fire ? 'border-orange-400 text-orange-500' : 'border-gray-200 dark:border-gray-700 text-tec-navy dark:text-gray-300'}`}
+              >
+                <Flame className="w-4 h-4" />
               </button>
             </div>
           </div>

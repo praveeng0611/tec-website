@@ -9,14 +9,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'tec-navy':    '#0D1B2E',
-        'tec-blue':    '#1B4080',
-        'tec-blue-mid':'#1E5BA8',
-        'tec-cyan':    '#29ABE2',
-        'tec-light':   '#EEF4FB',
-        'tec-card':    '#1A3F72',
-        'tec-dark-bg': '#0A1525',
-        'tec-dark-card':'#162844',
+        // CSS custom properties drive all TEC colors — fire theme overrides them globally
+        'tec-navy':      'rgb(var(--tec-navy) / <alpha-value>)',
+        'tec-blue':      'rgb(var(--tec-blue) / <alpha-value>)',
+        'tec-blue-mid':  'rgb(var(--tec-blue-mid) / <alpha-value>)',
+        'tec-cyan':      'rgb(var(--tec-cyan) / <alpha-value>)',
+        'tec-light':     'rgb(var(--tec-light) / <alpha-value>)',
+        'tec-card':      'rgb(var(--tec-card) / <alpha-value>)',
+        'tec-dark-bg':   'rgb(var(--tec-dark-bg) / <alpha-value>)',
+        'tec-dark-card': 'rgb(var(--tec-dark-card) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
