@@ -112,11 +112,7 @@ const heroSlides = [
     label: 'Advanced Manufacturing',
     sub: 'Ultra-high-strength automotive body panels',
   },
-  {
-    img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80&fit=crop&auto=format',
-    label: 'Precision Welding & Assembly',
-    sub: 'Robotic MIG, Arc and resistance welding at scale',
-  },
+
 ];
 
 export default function HomePage() {
@@ -302,17 +298,21 @@ export default function HomePage() {
                 alt: 'Precision manufacturing',
               },
               {
-                src: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80&fit=crop&auto=format',
-                alt: 'Welding and fabrication',
+                src: '/hero-press.jpg',
+                srcWebp: '/hero-press.webp',
+                alt: 'Stamping press line — Tadpole Engineering',
+                isLocal: true,
               },
             ].map((img, i) => (
               <div key={i} className="rounded-xl h-52 lg:h-72 overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
+                {img.isLocal ? (
+                  <picture>
+                    <source srcSet={img.srcWebp} type="image/webp" />
+                    <img src={img.src} alt={img.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" width={1999} height={1333} />
+                  </picture>
+                ) : (
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                )}
               </div>
             ))}
           </div>

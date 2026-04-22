@@ -3,8 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const support = ['Ticket support', 'Help Center', 'FAQ', 'Contact Us', 'Community'];
-const company = ['About Us', 'Leadership', 'Career', 'News & Article', 'Legal Notice'];
+const company = [
+  { label: 'About Us',       href: '/about' },
+  { label: 'Leadership',     href: '/leadership' },
+  { label: 'Career',         href: '/career' },
+  { label: 'News & Article', href: '/news' },
+  { label: 'Legal Notice',   href: '/legal' },
+];
 
 const socials = [
   {
@@ -72,7 +77,7 @@ export default function Footer() {
   return (
     <footer className="bg-tec-light dark:bg-tec-navy border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
           {/* Brand */}
           <div>
@@ -83,7 +88,11 @@ export default function Footer() {
                 <div className="text-[10px] tracking-[0.25em] text-tec-blue dark:text-tec-cyan uppercase font-semibold">ENGINEERING</div>
               </div>
             </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">Make way for your leap</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Make way for your leap</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mb-5 leading-relaxed">
+              Tadpole Engineering Consultancy Pvt Ltd<br />
+              Chennai · Pune · NCR · Global Locations
+            </p>
             <div className="flex items-center gap-2.5 flex-wrap">
               {socials.map((s) => (
                 <a
@@ -100,30 +109,20 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h4 className="font-bold text-tec-navy dark:text-white mb-4 text-sm">Support</h4>
-            <ul className="space-y-2.5">
-              {support.map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-tec-cyan flex-shrink-0" />
-                  <Link href="#" className="text-sm text-gray-500 dark:text-gray-400 hover:text-tec-cyan transition-colors">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+          {/* Company */}
           <div>
             <h4 className="font-bold text-tec-navy dark:text-white mb-4 text-sm">Company</h4>
             <ul className="space-y-2.5">
               {company.map((item) => (
-                <li key={item} className="flex items-center gap-2">
+                <li key={item.label} className="flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full bg-tec-cyan flex-shrink-0" />
-                  <Link href="#" className="text-sm text-gray-500 dark:text-gray-400 hover:text-tec-cyan transition-colors">{item}</Link>
+                  <Link href={item.href} className="text-sm text-gray-500 dark:text-gray-400 hover:text-tec-cyan transition-colors">{item.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Newsletter */}
           <div>
             <h4 className="font-bold text-tec-navy dark:text-white mb-3 text-sm">Newsletter</h4>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Subscribe to our Newsletter & Event right now to be updated.</p>
@@ -147,11 +146,11 @@ export default function Footer() {
         <div className="border-t border-gray-200 dark:border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400">Copyright &copy; {new Date().getFullYear()} Tadpole Engineering Consultancy Pvt Ltd. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="text-xs text-gray-400 hover:text-tec-cyan transition-colors">Terms of use</Link>
+            <Link href="/terms" className="text-xs text-gray-400 hover:text-tec-cyan transition-colors">Terms of Use</Link>
             <span className="text-gray-300 dark:text-gray-700">|</span>
-            <Link href="#" className="text-xs text-gray-400 hover:text-tec-cyan transition-colors">Privacy Policy</Link>
+            <Link href="/privacy" className="text-xs text-gray-400 hover:text-tec-cyan transition-colors">Privacy Policy</Link>
             <span className="text-gray-300 dark:text-gray-700">|</span>
-            <Link href="#" className="text-xs text-gray-400 hover:text-tec-cyan transition-colors">Cookie Policy</Link>
+            <Link href="/cookie-policy" className="text-xs text-gray-400 hover:text-tec-cyan transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>
