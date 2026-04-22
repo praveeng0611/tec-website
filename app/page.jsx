@@ -290,12 +290,14 @@ export default function HomePage() {
           <div className="grid grid-cols-3 gap-3">
             {[
               {
-                src: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&q=80&fit=crop&auto=format',
-                alt: 'Industrial stamping press',
+                src: '/hero-press.jpg',
+                srcWebp: '/hero-press.webp',
+                alt: 'TEC stamping press line — Pune plant',
+                isLocal: true,
               },
               {
                 src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80&fit=crop&auto=format',
-                alt: 'Precision manufacturing',
+                alt: 'Precision manufacturing engineering',
               },
               {
                 src: '/hero-press.jpg',
