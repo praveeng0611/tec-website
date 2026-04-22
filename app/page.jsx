@@ -55,10 +55,10 @@ const services = [
 ];
 
 const stats = [
-  { num: '5K+', label: 'Project Realize' },
-  { num: '1,000+', label: 'Expert Joined' },
-  { num: '7+', label: 'Awards Won' },
-  { num: '7+', label: 'Years of Experience' },
+  { num: '240+', label: 'Skilled Professionals' },
+  { num: '20+', label: 'Years of Experience' },
+  { num: '6', label: 'ISO / IATF Certifications' },
+  { num: '3+', label: 'Manufacturing Plants' },
 ];
 
 const features = [
@@ -101,9 +101,11 @@ function useCounter(target, duration = 1800) {
 // Unsplash images — free to use under Unsplash License (no attribution required)
 const heroSlides = [
   {
-    img: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=900&q=80&fit=crop&auto=format',
-    label: 'Sheet Metal Stamping',
-    sub: 'Precision forming from 270 MPa to 1200 MPa tensile steel',
+    img: '/hero-press.jpg',
+    imgWebp: '/hero-press.webp',
+    label: 'Stamping Press Line',
+    sub: 'Tandem HPS up to 1200 T — precision automotive components at scale',
+    isLocal: true,
   },
   {
     img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80&fit=crop&auto=format',
@@ -169,13 +171,28 @@ export default function HomePage() {
                   key={i}
                   className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}
                 >
-                  {/* Real Unsplash manufacturing photo */}
-                  <img
-                    src={s.img}
-                    alt={s.label}
-                    className="w-full h-full object-cover"
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                  />
+                  {s.isLocal ? (
+                    <picture>
+                      <source srcSet={s.imgWebp} type="image/webp" />
+                      <img
+                        src={s.img}
+                        alt={s.label}
+                        className="w-full h-full object-cover"
+                        fetchPriority="high"
+                        decoding="async"
+                        width={1999}
+                        height={1333}
+                      />
+                    </picture>
+                  ) : (
+                    <img
+                      src={s.img}
+                      alt={s.label}
+                      className="w-full h-full object-cover"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   <div className="absolute bottom-6 left-6">
                     <div className="text-white font-bold text-base leading-snug">{s.label}</div>

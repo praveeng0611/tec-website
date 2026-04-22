@@ -1,4 +1,17 @@
 import Link from 'next/link';
+export const metadata = {
+  title: 'About Us',
+  description:
+    'Learn about Tadpole Engineering Consultancy Pvt Ltd — founded 2017, 240+ skilled professionals, plants in Chennai, Pune & NCR. IATF 16949 | ISO 9001 certified automotive component manufacturer.',
+  openGraph: {
+    title: 'About Tadpole Engineering Consultancy',
+    description:
+      '240+ employees, 20+ years automotive expertise, 6 international certifications. Real milestones from 2017 Foundation to 2023 Hot Stamping Expansion.',
+    url: 'https://tec.gnosisolabs.com/about',
+  },
+  alternates: { canonical: 'https://tec.gnosisolabs.com/about' },
+};
+
 
 const milestones = [
   {

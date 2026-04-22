@@ -1,4 +1,17 @@
 import Link from 'next/link';
+export const metadata = {
+  title: 'Products',
+  description:
+    'Tadpole Engineering products: Sunroof aluminum guide rails, BIW sheet metal components, hot stamping, seat frames & mechanisms, wire-formed parts, pipe-bending, CED coating, anodizing, and in-house tooling. IATF 16949 certified.',
+  openGraph: {
+    title: 'Automotive Products — Tadpole Engineering Consultancy',
+    description:
+      '9 core automotive product categories. Tandem HPS up to 1200 T, hot stamping 1000 T, 7-axis CNC wire bending, automatic anodizing & CED coating.',
+    url: 'https://tec.gnosisolabs.com/products',
+  },
+  alternates: { canonical: 'https://tec.gnosisolabs.com/products' },
+};
+
 
 const products = [
   {
