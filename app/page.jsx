@@ -126,7 +126,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="pt-16">
+    <div className="pt-20">
 
       {/* ── HERO ── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-white dark:bg-tec-dark-bg">

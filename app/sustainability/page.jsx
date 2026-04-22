@@ -73,7 +73,7 @@ const metrics = [
 
 export default function SustainabilityPage() {
   return (
-    <div className="pt-16 bg-white dark:bg-tec-dark-bg">
+    <div className="pt-20 bg-white dark:bg-tec-dark-bg">
 
       {/* ── PAGE HERO ── */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-tec-navy via-tec-blue to-tec-navy dark:from-tec-dark-bg dark:via-[#0F2547] dark:to-tec-dark-bg">

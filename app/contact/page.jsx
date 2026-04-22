@@ -22,7 +22,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-16 bg-white dark:bg-tec-dark-bg">
+    <div className="pt-20 bg-white dark:bg-tec-dark-bg">
 
       {/* ── PAGE HERO ── */}
       <section className="relative bg-tec-navy dark:bg-tec-dark-bg py-24 overflow-hidden">

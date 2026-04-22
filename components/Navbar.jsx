@@ -69,21 +69,21 @@ export default function Navbar() {
           : 'bg-white dark:bg-tec-navy'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
 
             {/* ── Logo ── */}
-            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
               <Image
                 src={logoSrc}
                 alt="Tadpole Engineering"
-                width={38}
-                height={38}
+                width={60}
+                height={60}
                 className="object-contain"
                 priority
               />
               <div className="leading-tight">
-                <div className="font-black text-sm tracking-wider text-tec-navy dark:text-white uppercase">TADPOLE</div>
-                <div className="text-[9px] tracking-[0.2em] text-tec-blue dark:text-tec-cyan uppercase font-medium">ENGINEERING</div>
+                <div className="font-black text-base tracking-widest text-tec-navy dark:text-white uppercase">TADPOLE</div>
+                <div className="text-[10px] tracking-[0.25em] text-tec-blue dark:text-tec-cyan uppercase font-semibold">ENGINEERING</div>
               </div>
             </Link>
 

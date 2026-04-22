@@ -42,7 +42,7 @@ export default function FindUsPage() {
   const loc = locations.find((l) => l.id === active);
 
   return (
-    <div className="pt-16 bg-white dark:bg-tec-dark-bg">
+    <div className="pt-20 bg-white dark:bg-tec-dark-bg">
 
       {/* ── PAGE HERO ── */}
       <section className="relative bg-tec-navy dark:bg-tec-dark-bg py-24 overflow-hidden">
