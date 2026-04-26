@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tec-navy:    #0D1B2E;
+  --tec-blue:    #1B4080;
+  --tec-cyan:    #29ABE2;
+  --tec-light:   #EEF4FB;
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #ffffff;
+  color: #0D1B2E;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode body */
+html.dark body {
+  background-color: #0A1525;
+  color: #e2e8f0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #EEF4FB; }
+::-webkit-scrollbar-thumb { background: #29ABE2; border-radius: 3px; }
+html.dark ::-webkit-scrollbar-track { background: #0A1525; }
+
+/* Utility classes */
+.tec-btn-primary {
+  background: #1B4080;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+.tec-btn-primary:hover {
+  background: #1E5BA8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(27, 64, 128, 0.35);
+}
+
+.tec-btn-outline {
+  background: transparent;
+  color: #1B4080;
+  padding: 11px 27px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid #1B4080;
+}
+.tec-btn-outline:hover {
+  background: #1B4080;
+  color: white;
+}
+
+html.dark .tec-btn-outline {
+  color: #29ABE2;
+  border-color: #29ABE2;
+}
+html.dark .tec-btn-outline:hover {
+  background: #29ABE2;
+  color: #0A1525;
+}
+
+/* Section tag */
+.tec-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #29ABE2;
+}
+
+/* Stat number */
+.tec-stat-num {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #29ABE2;
+  line-height: 1;
+}
+
+/* Card hover */
+.tec-service-card {
+  background: #1A3F72;
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tec-service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(41, 171, 226, 0.2);
+}
+
+html.dark .tec-service-card {
+  background: #162844;
+}
+
+/* Feature card */
+.tec-feature-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: background 0.2s ease;
+}
+.tec-feature-card:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+/* Globe decoration */
+.globe-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -40px;
+}
